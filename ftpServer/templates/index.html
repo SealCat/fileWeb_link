@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/static/config/index.css">
+    <script src="/static/config/jquery.min.js"></script>
+    <script src="/static/config/del.js"></script>
+</head>
+
+<body class="directory">
+    <div id="wrapper">
+        <h1>{{ li }}</h1>
+
+        <ul id="files" class="view-tiles">
+            {% for path in paths %}
+            <li>
+                <a href="{{ path.url }}" class="{{ path.type }}" title="{{ path.name }}">
+                    <span class="name">{{ path.name }}</span>
+                    <span class="size">{{ path.size }}</span>
+                    <span class="date">{{ path.data }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <br>
+        <br>
+        <br>
+        <input type="hidden" name="url" value="{{ title[2:] }}">
+        <input type="submit" value="上传">
+    </form>
+</body>
+
+</html>
